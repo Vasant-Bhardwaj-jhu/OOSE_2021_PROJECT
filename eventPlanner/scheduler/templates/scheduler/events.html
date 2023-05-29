@@ -1,0 +1,189 @@
+{% extends 'scheduler/layout.html' %}
+{% load static %}
+
+
+
+{% block body %}
+
+    <form action="{% url 'events' %}" method="POST">
+        {% csrf_token %}
+        {{ event_filter_form }}
+        <input class="btn btn-primary" type="submit" id="submit-button" value="Filter">
+    </form>
+
+<style>
+    :root {
+  --surface-color: #fff;
+  --curve: 40;
+}
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Noto Sans JP', sans-serif;
+        background: linear-gradient(to right, #1400c4, #2b59ff);
+        margin:auto;
+    }
+
+    .cards {
+        background-color: #1b7aff;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 4rem 5vw;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    .card {
+        position: relative;
+        display: block;
+        height: 100%;
+        border-radius: calc(var(--curve) * 1px);
+        overflow: hidden;
+        text-decoration: none;
+    }
+
+    .card__image {
+        width: 100%;
+        height: 350px;
+    }
+
+    .card__overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        border-radius: calc(var(--curve) * 1px);
+        background-color: var(--surface-color);
+        transform: translateY(100%);
+        transition: .2s ease-in-out;
+    }
+
+    .card:hover .card__overlay {
+        transform: translateY(0);
+    }
+
+    .card__header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 2em;
+        padding: 2em;
+        border-radius: calc(var(--curve) * 1px) 0 0 0;
+        background-color: var(--surface-color);
+        transform: translateY(-100%);
+        transition: .2s ease-in-out;
+    }
+
+    .card__arc {
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        bottom: 100%;
+        right: 0;
+        z-index: 1;
+    }
+
+    .card__arc path {
+        fill: var(--surface-color);
+        d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
+    }
+
+    .card:hover .card__header {
+        transform: translateY(0);
+    }
+
+    .card__thumb {
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .card__title {
+        font-size: 1em;
+        margin: 0 0 .3em;
+        color: navy;
+    }
+
+    .card__tagline {
+        display: block;
+        margin: 1em 0;
+        font-family: "MockFlowFont";
+        font-size: .8em;
+        color: dodgerblue;
+    }
+
+    .card__status {
+        font-size: .8em;
+        color: dodgerblue;
+    }
+
+    .card__description {
+        padding: 0 2em 2em;
+        margin: 0;
+        color: dodgerblue;
+        font-family: "MockFlowFont";
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+    }
+
+    .new-search {
+        border-color: gray;
+        margin: auto;
+        background-color: white;
+        display: inline-block;
+        width: 50%;
+        padding: 10px;
+    }
+    .button2 {
+        border: gray;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 15px;
+        margin: auto;
+    }
+
+    ul {
+        background: linear-gradient(to right, #1400c4, #2b59ff);
+    }
+
+</style>
+    <body>
+<ul class="cards">
+    <li>
+        {% for event in events %}
+        <a href="{{ event.tickets }}" class="card">
+            <img src="{{ event.picture }}" class="card__image" alt="" />
+            <div class="card__overlay">
+                <div class="card__header">
+                    <div class="card__header-text">
+                        <h3 class="card__title">{{ event.name }}</h3>
+                        <h3 class="card__title">Starts: {{ event.start_time_display }} Ends: {{ event.end_time_display }}</h3>
+                        <span class="card__status">${{ event.cost }}</span>
+                    </div>
+                </div>
+                <p class="card__description">{{ event.description }}</p>
+            </div>
+        </a>
+    </li>
+    {% empty %}
+    <h3>No events found</h3>
+    {% endfor %}
+</ul>
+
+        <a href="{% url 'user' %}" class="btn btn-primary" style="margin: auto; border-radius: 20px; width: 300px">
+        Click here to start a new search.
+        </a>
+    </body>
+
+    {% endblock %}

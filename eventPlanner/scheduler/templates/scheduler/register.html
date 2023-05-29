@@ -1,0 +1,71 @@
+{% extends 'scheduler/layout.html' %}
+{% load static %}
+
+{% block header %}Register{% endblock %}
+
+{% block static %}
+    <link href="{% static 'scheduler/register.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <div id="personal-view">
+                <form action="{% url 'register' %}" method="POST" id="registration-form">
+                    {% csrf_token %}
+                    <p style="color: white"> hello</p>
+                    <h1 class="rightSign">Sign</h1>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="last_name" placeholder="Last Name" required>
+                    </div>
+<div class="form-group">
+                        <input class="form-control" type="text" name="address1" placeholder="Street Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="city" placeholder="City" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="state" placeholder="State (2 Letter Code)" required>
+                    </div>
+                    <a style="color: white"> hello
+						</a>
+            </div>
+        </div>
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+					<h1 class="leftSign">Up</h1>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="country" placeholder="Country" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="email" name="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="password" name="confirm_password" placeholder="Confirm Password" required>
+                    </div>
+                    <button class="btn btn-sm btn-primary" id="continue-button">Next</button>
+                </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+
+<!-- References: -->
+<!-- https://css-tricks.com/radio-buttons-with-2-way-exclusivity/ -->

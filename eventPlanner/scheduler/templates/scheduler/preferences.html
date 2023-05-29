@@ -1,0 +1,94 @@
+{% extends 'scheduler/layout.html' %}
+{% load static %}
+
+{% block header %}Select Preferences{% endblock %}
+{% block static %}
+    <link href="{% static 'scheduler/preferences.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{#{% block body %}#}
+{#    <form action="{% url 'preferences' %}" method="POST" id="preference-form">#}
+{#        {% csrf_token %}#}
+{#        <div id="preferences-view">#}
+{#            {{ preference_form.as_ul }}#}
+{#            <input class="btn btn-primary" type="submit" id="submit-button" value="Save Preferences">#}
+{#        </div>#}
+{#    </form>#}
+{#{% endblock %}#}
+
+{% block body %}
+<form action="{% url 'preferences' %}" method="POST" id="registration-form" name="registration-form">
+{% csrf_token %}
+        <div class="container" id="container">
+            <div class="form-container sign-in-container">
+                <div id="personal-view">
+                    <h1 class="rightSign">Select</h1>
+                    <div class="form-group">
+                        <label for="music">How much do you like music?</label>
+                        <input class="form-control" type="range" name="music" id="music" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="visual">How much do you like visual events?</label>
+                        <input class="form-control" type="range" name="visual" id="visual" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="performing">How much do you like performing arts?</label>
+                        <input class="form-control" type="range" name="performing" id="performing" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="visual">How much do you like visual events?</label>
+                        <input class="form-control" type="range" name="film" id="film" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lectures">How much do you like lectures?</label>
+                        <input class="form-control" type="range" name="lectures" id="lectures" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nightlife">How much do you like nightlife events?</label>
+                        <input class="form-control" type="range" name="nightlife" id="nightlife" min="1" max="5" required>
+                    </div>
+
+                    <input type="hidden" id="registration" name="registration" value="registration">
+                </div>
+            </div>
+
+
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+					<h1 class="leftSign">Preferences</h1>
+                    <div class="form-group">
+                        <label for="fashion">How much do you like fashion events?</label>
+                        <input class="form-control" type="range" name="fashion" id="fashion" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="food">How much do you like food?</label>
+                        <input class="form-control" type="range" name="food" id="food" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="festivals">How much do you like festivals?</label>
+                        <input class="form-control" type="range" name="festivals" id="festivals" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="charity">How much do you like charity events?</label>
+                        <input class="form-control" type="range" name="charity" id="charity" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sports">How much do you like sport events?</label>
+                        <input class="form-control" type="range" name="sports" id="sports" min="1" max="5" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="family">How much do you like family events?</label>
+                        <input class="form-control" type="range" name="family" id="family" min="1" max="5" required>
+                    </div>
+                    <button class="btn btn-sm btn-primary" style="border-radius: 20px; width:150px;" id="continue-button" type="submit">Next</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>>
+{% endblock %}

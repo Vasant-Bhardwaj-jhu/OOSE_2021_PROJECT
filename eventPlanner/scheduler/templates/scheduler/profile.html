@@ -1,0 +1,56 @@
+{% extends 'scheduler/layout.html' %}
+{% load static %}
+
+
+
+{% block static %}
+    <link href="{% static 'scheduler/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'scheduler/register.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+    <div class="center-big">
+        <div style="color: white; padding:10px">
+            <h2 style="color: white">Logged in as {{ user.first_name }}</h2>
+            <h4 style="color: white"> Your information: </h4>
+            {{ user.address1 }}
+            {{ user.city }}
+            {{ user.state }}
+            {{ user.country }}
+        </div>
+        <div class="flex-container">
+            <div class="side-by-side-l">
+                <h2>PREFERENCES</h2>
+                <h5>(Weighted 1 - 5):</h5>
+                <ul>
+                    <li> Music: {{ user.music }} </li>
+                    <li>Visual: {{ user.visual }}</li>
+                    <li>Performance: {{ user.performing }}</li>
+                    <li>Film: {{ user.film }}</li>
+                    <li>Lectures: {{ user.lectures }}</li>
+                    <li>Fashion: {{ user.fashion }}</li>
+                    <li>Food: {{ user.food }}</li>
+                    <li>Festivals: {{ user.festivals }}</li>
+                    <li>Charity: {{ user.charity }}</li>
+                    <li>Sports: {{ user.sports }}</li>
+                    <li>Night-life: {{ user.nightlife }}</li>
+                    <li>Family-Friendly: {{ user.family }}</li>
+                </ul>
+
+
+                <a class="btn btn-primary" style="border-radius: 20px; width: 150px;" href="{% url 'preferences' %}">CHANGE</a>
+            </div>
+            <div class="side-by-side-r">
+                Looking for some cool events?
+                <div><a class="btn btn-primary" style="border-radius: 20px; width: 150px;" href="{% url 'search' %}"> SEARCH </a></div>
+            </div>
+        </div>
+{#        768/2 = #}
+
+    </div>
+
+{% endblock %}
